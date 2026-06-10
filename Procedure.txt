@@ -1,0 +1,54 @@
+EXP 1
+npm init -y
+npm install mongodb
+Go to mongo compass:
+mongodb://localhost:27017
+connect to this localhost
+Back to terminal:
+write code and run using
+node mongo_script.js
+
+EXP 2
+npm init -y
+npm install mongodb
+Go to mongo compass:
+mongodb://localhost:27017
+connect to this localhost
+Back to terminal:
+write code and run using
+node query.js
+
+EXP3
+Write code in car.js and cookie.js and
+run node car.js and node cookie.js
+
+EXP4
+Write code for 4a and 4b and data.json then
+npm init -y
+npm install mongodb
+an execute by node exp4a.js , node exp4b.js John or Jane
+
+EXP 5
+only write program exp5.js and then run using node exp5.js
+
+EXP 8
+First write code in app.js then npm init -y
+npm install express
+node app.js
+Server running at http://localhost:3000 the go to local host 
+http://localhost:3000/find_prime_100
+http://localhost:3000/find_cube_100
+
+EXP 9
+in a folder in vs terminal write
+npx create-react-app p9
+cd p9
+npm start
+then react app opens and u see the website page
+
+EXP10
+in a folder in vs terminal write
+npx create-react-app p10
+cd p10
+npm start
+then react app opens and u see the website page
