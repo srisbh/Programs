@@ -1,0 +1,23 @@
+exp5.js
+
+const fs = require("fs/promises");
+async function run() {
+    const file = "apple.txt";
+    
+    await fs.writeFile(file,"This is a simple file");
+    console.log("File Created");
+
+    console.log("Read:",await fs.readFile(file, "utf8"));
+
+    await fs.appendFile(file," for fruits");
+    console.log("File Updated");
+
+    console.log("Updated Read:",await fs.readFile(file, "utf8"));
+
+    await fs.rename(file,"fruit.txt");
+    console.log("File Renamed");
+
+    await fs.unlink("fruit.txt");
+    console.log("File Deleted");
+}
+run();

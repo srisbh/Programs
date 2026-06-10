@@ -1,0 +1,58 @@
+mongo_script.js
+
+const {MongoClient}=require("mongodb");
+async function run() {
+
+    const  client = await MongoClient.connect("mongodb://localhost:27017");
+    
+    const col = client.db("usermanaged").collection("transactions");
+
+    await col.drop().catch(() => {});
+
+    await col.insertMany(require("./transactions.json"));
+
+    for(let doc of require("./transactions_upsert.json")) {
+        await col.updateOne(
+            {_id:doc._id},
+            {$set:doc},
+            {upsert:true}
+        );
+    }
+    console.log("Data inserted successfully!");
+    client.close();
+}
+run();
+
+transactions.json
+
+[
+    {
+        "_id":1,
+        "name":"John Doe",
+        "amount":500,
+        "status":"Completed"
+    },
+    {
+        "_id":2,
+        "name":"Jane Smith",
+        "amount":750,
+        "status":"Pending"
+    }
+]
+
+transactions_upsert.json
+
+[
+    {
+        "_id":2,
+        "name":"Jane Smith",
+        "amount":900,
+        "status":"Completed"
+    },
+    {
+        "_id":3,
+        "name":"Bob Martin",
+        "amount":300,
+        "status":"Pending"
+    }
+]

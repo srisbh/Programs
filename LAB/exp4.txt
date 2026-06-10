@@ -1,0 +1,41 @@
+exp4a.js
+
+const { MongoClient} = require("mongodb");
+async function run() {
+    const client = await MongoClient.connect("mongodb://localhost:27017");
+    const col = client.db("college").collection("students");
+    await col.drop().catch(() => {});
+    await col.insertMany(require("./data.json"));
+    console.log("Student data inserted successfully!")
+    client.close();
+}
+run();
+
+exp4b.js
+
+const {MongoClient} = require("mongodb");
+async function run() {
+    const partialName = process.argv[2];
+    const client = await MongoClient.connect("mongodb://localhost:27017");
+    const col = client.db("college").collection("students");
+    const students = await col.find({
+        name: {
+            $regex:partialName,
+            $options:"i" 
+        }
+    }).toArray();
+    console.log("Search Results:",students);
+    client.close();
+}
+
+run();
+
+data.json
+
+[
+    {"usn":"1ABCD123","name":"John Doe","sem":3,"year_of_admission":2022},
+    {"usn":"2EFGH456","name":"Jane Smith","sem":4,"year_of_admission":2021},
+    {"usn":"3IJKL789","name":"Alice Johnson","sem":2,"year_of_admission":2023}
+]
+
+

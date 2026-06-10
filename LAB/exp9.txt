@@ -1,0 +1,49 @@
+app.js
+inside src 
+
+import React, { useState } from "react";
+
+function App() {
+
+  const [query, setQuery] = useState("");
+
+  const fruits = [
+    "Apple",
+    "Banana",
+    "Orange",
+    "Mango"
+  ];
+
+  return (
+
+    <div>
+
+      <h2>Search Filter</h2>
+
+      <input
+        placeholder="Search fruit"
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <ul>
+
+        {fruits
+          .filter(fruit =>
+            fruit.toLowerCase().includes(query.toLowerCase())
+          )
+
+          .map(fruit => (
+
+            <li key={fruit}>
+              {fruit}
+            </li>
+
+          ))}
+
+      </ul>
+
+    </div>
+  );
+}
+
+export default App;
