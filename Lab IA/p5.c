@@ -1,5 +1,7 @@
 #include<stdio.h>
+
 int a[10][10],indegree[20],n;
+
 void topological()
 {
     int i,j,u,k=0,t[20];
@@ -10,17 +12,19 @@ void topological()
     for(i=1;i<=n;i++)
         if(indegree[i]==0)
             stack[++top]=i;
-    while(top=-1)
+    while(top!=-1)
     {
         u=stack[top--];
         t[k++]=u;
+
         for(i=1;i<=n;i++)
             if(a[u][i] && --indegree[i]==0)
                 stack[++top]=i;
     }
     printf("Topological Ordering is:\n");
-    for(i=0;i<=n;i++)
-        printf("%d",t[i]);
+
+    for(i=0;i<k;i++)
+        printf("%d ",t[i]);
 }
 int main()
 {
@@ -28,9 +32,10 @@ int main()
     printf("Enter the number of nodes: ");
     scanf("%d",&n);
     printf("Enter the adjacency matrix:\n");
-    for (i=1;i<=n;i++)
+    for(i=1;i<=n;i++)
         for(j=1;j<=n;j++)
             scanf("%d",&a[i][j]);
+
     topological();
     return 0;
 }
